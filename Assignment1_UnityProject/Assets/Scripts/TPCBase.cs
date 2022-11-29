@@ -44,7 +44,7 @@ namespace PGGE
             RaycastHit hit;
             Physics.Raycast(mCameraTransform.position, mCameraTransform.position - mPlayerTransform.up, out hit, distance.magnitude, layerMask);
             Debug.Log("shooting ray");
-            if (hit.collider/*.gameObject.tag != "Player"*/)
+            if (hit.collider)
             {
                 mCameraTransform.position = hit.point;
                 Debug.Log("hit");
@@ -64,8 +64,6 @@ namespace PGGE
 
             //        mCameraTransform.Translate(Vector3.back * 1f * Time.deltaTime);
             //}
-
-
             //-------------------------------------------------------------------
             // Implement here.
             //-------------------------------------------------------------------
@@ -78,10 +76,6 @@ namespace PGGE
             //-------------------------------------------------------------------
 
         }
-
-
-
-
         public abstract void Update();
     }
 }
