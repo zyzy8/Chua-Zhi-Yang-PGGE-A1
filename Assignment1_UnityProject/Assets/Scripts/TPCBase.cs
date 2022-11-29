@@ -7,6 +7,7 @@ namespace PGGE
     // The base class for all third-person camera controllers
     public abstract class TPCBase
     {
+        
         protected Transform mCameraTransform;
         protected Transform mPlayerTransform;
 
@@ -29,10 +30,20 @@ namespace PGGE
         {
             mCameraTransform = cameraTransform;
             mPlayerTransform = playerTransform;
+            
         }
 
         public void RepositionCamera()
         {
+
+            RaycastHit hit;
+            if (Physics.Raycast(mCameraTransform.position, mPlayerTransform.position - mCameraTransform.position, out hit, 4.5f))
+            {
+                if(hit.collider.gameObject.tag != "Player")
+                {
+
+                }
+            }
             //-------------------------------------------------------------------
             // Implement here.
             //-------------------------------------------------------------------
