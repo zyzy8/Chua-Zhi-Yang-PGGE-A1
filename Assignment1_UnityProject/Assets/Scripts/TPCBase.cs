@@ -35,15 +35,17 @@ namespace PGGE
 
         public void RepositionCamera()
         {
-
+            Debug.Log("asd");
             RaycastHit hit;
-            if (Physics.Raycast(mCameraTransform.position, mPlayerTransform.position - mCameraTransform.position, out hit, 4.5f))
-            {
+            Physics.Raycast(mCameraTransform.position, mCameraTransform.position - mPlayerTransform.position, out hit, 5f);
+            
                 if(hit.collider.gameObject.tag != "Player")
                 {
-
+                    mCameraTransform.position = hit.transform.position;
+                    Debug.Log("hit");
+                    mCameraTransform.position = Vector3.MoveTowards(mCameraTransform.position, mPlayerTransform.position, 1f);
                 }
-            }
+            
             //-------------------------------------------------------------------
             // Implement here.
             //-------------------------------------------------------------------
