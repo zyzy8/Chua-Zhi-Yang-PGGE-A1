@@ -35,17 +35,37 @@ namespace PGGE
 
         public void RepositionCamera()
         {
-            Debug.Log("asd");
+            int layerMask = 1 << 8;
+
+            //Invert bitmask to collide against everything except Player layer
+            layerMask = ~layerMask;
+            
+            Vector3 distance = mCameraTransform.position - mPlayerTransform.position;
             RaycastHit hit;
-            Physics.Raycast(mCameraTransform.position, mCameraTransform.position - mPlayerTransform.position, out hit, 5f);
-            
-                if(hit.collider.gameObject.tag != "Player")
-                {
-                    mCameraTransform.position = hit.transform.position;
-                    Debug.Log("hit");
-                    mCameraTransform.position = Vector3.MoveTowards(mCameraTransform.position, mPlayerTransform.position, 1f);
-                }
-            
+            Physics.Raycast(mCameraTransform.position, mCameraTransform.position - mPlayerTransform.up, out hit, distance.magnitude, layerMask);
+            Debug.Log("shooting ray");
+            if (hit.collider.gameObject.tag != "Player")
+            {
+                mCameraTransform.position = hit.point;
+                Debug.Log("hit");
+                mCameraTransform.position = Vector3.MoveTowards(mCameraTransform.position, mPlayerTransform.up, 1f);
+                //mCameraTransform.Translate(Vector3.forward * 1f * Time.deltaTime);
+
+                //if (Vector3.Distance(hit.transform.position, mCameraTransform.position) >= 3f && Vector3.Distance(mCameraTransform.position, mPlayerTransform.position) >= 1.5f)
+                //{
+
+                //}
+
+                //}
+
+            }
+            //else
+            //{
+
+            //        mCameraTransform.Translate(Vector3.back * 1f * Time.deltaTime);
+            //}
+
+
             //-------------------------------------------------------------------
             // Implement here.
             //-------------------------------------------------------------------
@@ -56,7 +76,11 @@ namespace PGGE
             // find the nearest collision point to the player
             // shift the camera position to the nearest intersected point
             //-------------------------------------------------------------------
+
         }
+
+
+
 
         public abstract void Update();
     }
