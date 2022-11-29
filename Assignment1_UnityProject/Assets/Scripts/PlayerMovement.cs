@@ -28,9 +28,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 mVelocity = new Vector3(0.0f, 0.0f, 0.0f);
 
+    public AudioSource mAudioSource;
+    public AudioClip[] mAudioClip;
+
+
     void Start()
     {
         mCharacterController = GetComponent<CharacterController>();
+        mAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -106,14 +111,31 @@ public class PlayerMovement : MonoBehaviour
         mCharacterController.Move(forward * vInput * speed * Time.deltaTime);
         mAnimator.SetFloat("PosX", 0);
         mAnimator.SetFloat("PosZ", vInput * speed / (2.0f * mWalkSpeed));
-
+        
         if(jump)
         {
             Jump();
             jump = false;
         }
+        if (mAnimator.GetFloat("PosX") > 0f || mAnimator.GetFloat("PosZ") > 0f)
+        {
+            if (!mAudioSource.isPlaying)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    mAudioSource.pitch = 0.2f;
+                }
+                else
+                {
+                    mAudioSource.pitch = 0.1f;
+                }
+                mAudioSource.clip = mAudioClip[Random.Range(0, mAudioClip.Length)];
+                mAudioSource.PlayOneShot(mAudioSource.clip);
+            }
+        }
     }
 
+   
     void Jump()
     {
         mAnimator.SetTrigger("Jump");
