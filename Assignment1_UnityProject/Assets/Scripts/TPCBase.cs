@@ -36,7 +36,6 @@ namespace PGGE
         public void RepositionCamera()
         {
             int layerMask = 1 << 8;
-
             //Invert bitmask to collide against everything except Player layer
             layerMask = ~layerMask;
             
