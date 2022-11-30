@@ -51,11 +51,7 @@ namespace PGGE
                 mCameraTransform.position = Vector3.MoveTowards(mCameraTransform.position, mPlayerTransform.up, 1f);
                 
             }
-            //else
-            //{
-
-            //        mCameraTransform.Translate(Vector3.back * 1f * Time.deltaTime);
-            //}
+            
             //-------------------------------------------------------------------
             // Implement here.
             //-------------------------------------------------------------------
