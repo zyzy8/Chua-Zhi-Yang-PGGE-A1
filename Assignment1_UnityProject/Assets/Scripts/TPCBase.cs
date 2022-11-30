@@ -49,15 +49,7 @@ namespace PGGE
                 mCameraTransform.position = hit.point;
                 Debug.Log("hit");
                 mCameraTransform.position = Vector3.MoveTowards(mCameraTransform.position, mPlayerTransform.up, 1f);
-                //mCameraTransform.Translate(Vector3.forward * 1f * Time.deltaTime);
-
-                //if (Vector3.Distance(hit.transform.position, mCameraTransform.position) >= 3f && Vector3.Distance(mCameraTransform.position, mPlayerTransform.position) >= 1.5f)
-                //{
-
-                //}
-
-                //}
-
+                
             }
             //else
             //{

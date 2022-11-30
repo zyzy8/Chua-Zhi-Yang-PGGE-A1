@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             jump = false;
         }
 
-        //Footsteps section
+        //Footsteps
         if (mAnimator.GetFloat("PosX") > 0f || mAnimator.GetFloat("PosZ") > 0f)
         {
             if (!mAudioSource.isPlaying)
